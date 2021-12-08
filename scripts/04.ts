@@ -153,9 +153,6 @@ const run04 = () => {
         })
     );
 
-    console.log(results.cards.map((x) => x.winOrder));
-    console.log(results.cards.find((x) => x.winOrder == 100)?.board);
-
     // Find our first winner from the game
     let firstWinner = results.cards.find((board) => {
         return board.winOrder == 1;
