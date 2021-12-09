@@ -7,7 +7,7 @@ const run12 = () => {
             path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/12.txt')
         )
         .toString()
-        .split(/\r?\n/)
+        .split(/\s+$/);
 
     //TODO: Write some code here
 };
