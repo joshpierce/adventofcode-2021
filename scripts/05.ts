@@ -79,7 +79,7 @@ const run05 = () => {
         (line) => line.direction == 'horizontal' || line.direction == 'vertical'
     )) {
         if (line.direction == 'horizontal') {
-            console.log('Horizontal Line');
+            
             let length = line.coordinates.finish.x - line.coordinates.start.x;
             if (length >= 0) {
                 for (
@@ -99,7 +99,7 @@ const run05 = () => {
                 }
             }
         } else if (line.direction == 'vertical') {
-            console.log('Vertical Line');
+            
             let length = line.coordinates.finish.y - line.coordinates.start.y;
             if (length >= 0) {
                 for (
@@ -151,7 +151,7 @@ const run05 = () => {
 
     // Mark all the spots
     for (let line of allLines.filter((line) => line.direction == 'diagonal')) {
-        console.log('Diagonal Line');
+        
         let length = line.coordinates.finish.x - line.coordinates.start.x;
         if (length >= 0) {
             let count = 0;
