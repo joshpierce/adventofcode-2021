@@ -7,7 +7,7 @@ const run02 = () => {
             path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/02.txt')
         )
         .toString()
-        .split(/\r?\n/)
+        .split(/\s+$/)
 
     // We're going to use the array.reduce function to iterate our collection of instructions
     // and keep track (acc) of the x,y coordinates of our submarine

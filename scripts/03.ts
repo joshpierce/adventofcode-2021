@@ -7,7 +7,7 @@ const run03 = () => {
             path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/03.txt')
         )
         .toString()
-        .split(/\r?\n/)
+        .split(/\s+$/)
 
     let ones = input.reduce((acc, val, idx) => {
         let bits = val.split('');

@@ -25,7 +25,7 @@ const run05 = () => {
             path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/05.txt')
         )
         .toString()
-        .split(/\r?\n/)
+        .split(/\s+$/)
 
     let maxX = 0;
     let maxY = 0;

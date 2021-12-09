@@ -16,7 +16,7 @@ const run04 = () => {
             path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/04.txt')
         )
         .toString()
-        .split(/\r?\n/)
+        .split(/\s+$/)
 
     // Retrieve the list of balls that will be called in the game from the first line of the input
     let numbers = input[0].split(',');
