@@ -4,10 +4,10 @@ import path from 'path';
 const run02 = () => {
     let input: string[] = fs
         .readFileSync(
-            path.join(__dirname.replace('\\scripts', ''), '/inputs/02.txt')
+            path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/02.txt')
         )
         .toString()
-        .split('\r\n');
+        .split(/\r?\n/)
 
     // We're going to use the array.reduce function to iterate our collection of instructions
     // and keep track (acc) of the x,y coordinates of our submarine

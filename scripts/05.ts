@@ -22,10 +22,10 @@ type line = {
 const run05 = () => {
     let input: string[] = fs
         .readFileSync(
-            path.join(__dirname.replace('\\scripts', ''), '/inputs/05.txt')
+            path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/05.txt')
         )
         .toString()
-        .split('\r\n');
+        .split(/\r?\n/)
 
     let maxX = 0;
     let maxY = 0;
