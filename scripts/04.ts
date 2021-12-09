@@ -13,10 +13,13 @@ type BingoNumber = {
 const run04 = () => {
     let input: string[] = fs
         .readFileSync(
-            path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/04.txt')
+            path.join(
+                __dirname.replace('\\scripts', '').replace('/scripts', ''),
+                '/inputs/04.txt'
+            )
         )
         .toString()
-        .split(/\s+$/)
+        .split(/\r?\n/);
 
     // Retrieve the list of balls that will be called in the game from the first line of the input
     let numbers = input[0].split(',');

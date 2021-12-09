@@ -4,10 +4,13 @@ import path from 'path';
 const run01 = () => {
     let input: number[] = fs
         .readFileSync(
-            path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/01.txt')
+            path.join(
+                __dirname.replace('\\scripts', '').replace('/scripts', ''),
+                '/inputs/01.txt'
+            )
         )
         .toString()
-        .split(/\s+$/)
+        .split(/\r?\n/)
         // This allows us to get a typed array of number[] for TS purposes
         .map(Number);
 

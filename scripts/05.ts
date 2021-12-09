@@ -22,10 +22,13 @@ type line = {
 const run05 = () => {
     let input: string[] = fs
         .readFileSync(
-            path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/05.txt')
+            path.join(
+                __dirname.replace('\\scripts', '').replace('/scripts', ''),
+                '/inputs/05.txt'
+            )
         )
         .toString()
-        .split(/\s+$/)
+        .split(/\r?\n/);
 
     let maxX = 0;
     let maxY = 0;
@@ -79,7 +82,6 @@ const run05 = () => {
         (line) => line.direction == 'horizontal' || line.direction == 'vertical'
     )) {
         if (line.direction == 'horizontal') {
-            
             let length = line.coordinates.finish.x - line.coordinates.start.x;
             if (length >= 0) {
                 for (
@@ -99,7 +101,6 @@ const run05 = () => {
                 }
             }
         } else if (line.direction == 'vertical') {
-            
             let length = line.coordinates.finish.y - line.coordinates.start.y;
             if (length >= 0) {
                 for (
@@ -151,7 +152,6 @@ const run05 = () => {
 
     // Mark all the spots
     for (let line of allLines.filter((line) => line.direction == 'diagonal')) {
-        
         let length = line.coordinates.finish.x - line.coordinates.start.x;
         if (length >= 0) {
             let count = 0;

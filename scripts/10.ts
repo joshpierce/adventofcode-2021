@@ -4,10 +4,13 @@ import path from 'path';
 const run10 = () => {
     let input: string[] = fs
         .readFileSync(
-            path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/10.txt')
+            path.join(
+                __dirname.replace('\\scripts', '').replace('/scripts', ''),
+                '/inputs/10.txt'
+            )
         )
         .toString()
-        .split(/\s+$/);
+        .split(/\r?\n/);
 
     //TODO: Write some code here
 };

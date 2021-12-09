@@ -4,10 +4,13 @@ import path from 'path';
 const run03 = () => {
     let input: string[] = fs
         .readFileSync(
-            path.join(__dirname.replace('\\scripts', '').replace('/scripts', ''), '/inputs/03.txt')
+            path.join(
+                __dirname.replace('\\scripts', '').replace('/scripts', ''),
+                '/inputs/03.txt'
+            )
         )
         .toString()
-        .split(/\s+$/)
+        .split(/\r?\n/);
 
     let ones = input.reduce((acc, val, idx) => {
         let bits = val.split('');
