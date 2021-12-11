@@ -29,12 +29,15 @@ const run10 = () => {
         line: string,
         openToClose: string[]
     ) => {
-        console.log(`line ${line.length} to change}`);
+        console.log(`${line.length} characters left to check for Errors.`);
         let currentChar = line.split('')[0];
+        console.log(`Check character ${currentChar}`);
         let currentPair = charPairs.find(
             (pair) => pair.close === currentChar || pair.open === currentChar
         );
+        console.log('found current pair', currentPair);
         let isClosing = currentChar === currentPair?.close;
+        // We're either breaking, or returning openToClose with one less element
         if (isClosing) {
             console.log(`Found a Closing Character ${currentChar}`);
             if (openToClose.slice(-1)[0] == currentPair?.open) {
@@ -48,20 +51,32 @@ const run10 = () => {
                 console.log(
                     'Wrong Closing Character for current Chunk, Returning.'
                 );
-                return currentPair?.points;
+                if (currentPair) {
+                    return currentPair.points;
+                } else {
+                    return -1;
+                }
             }
         } else if (openToClose.length == 1) {
             line = line.split('').slice(1).join('');
             openToClose = [...openToClose, currentChar];
+            console.log(`New backlog contains ${openToClose}`);
             return checkLine(line, openToClose);
         }
 
-        if (openToClose.length === 0) {
+        if (line.length === 0) {
+            console.log('zero');
             return 0;
         }
 
         return -1;
     };
+
+    let errorSum = input.map((line) => {
+        checkLine(line, []);
+    });
+
+    console.log(errorSum);
 };
 
 export { run10 };
