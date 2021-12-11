@@ -24,8 +24,17 @@ const run10 = () => {
         { open: '{', close: '}', points: 1197 },
         { open: '<', close: '>', points: 25137 },
     ];
+    const autocompletePoints = [
+        { character: ')', points: 1 },
+        { character: ']', points: 2 },
+        { character: '}', points: 3 },
+        { character: '>', points: 4 },
+    ];
 
-    const checkLine: (line: string, openToClose: string[]) => number = (
+    const checkLine: (
+        line: string,
+        openToClose: string[]
+    ) => { points: number; remainder: string } = (
         line: string,
         openToClose: string[]
     ) => {
@@ -47,7 +56,7 @@ const run10 = () => {
         if (currentPair?.close === currentChar) {
             let openChar = openToClose.pop();
             if (openChar !== currentPair?.open) {
-                return currentPair.points;
+                return { points: currentPair.points, remainder: '' };
             }
         }
 
@@ -55,19 +64,48 @@ const run10 = () => {
         if (line.length > 1) {
             return checkLine(line.substr(1), openToClose);
         } else {
-            return 0;
+            return { points: 0, remainder: openToClose.join('') };
         }
     };
 
-    let errorSum = input
-        .map((line) => {
-            return checkLine(line, []);
-        })
-        .reduce((acc, val) => {
-            return acc + val;
-        });
+    let results = input.map((line) => {
+        return checkLine(line, []);
+    });
+
+    let errorSum = results.reduce((acc, val) => {
+        return acc + val.points;
+    }, 0);
 
     console.log(`The total error syntax score is ${errorSum}`);
+
+    let acscores = results.reduce((acc, val) => {
+        if (val.remainder) {
+            return [
+                ...acc,
+                val.remainder
+                    .split('')
+                    .map((open) => charPairs.find((x) => x.open == open)?.close)
+                    .reverse()
+                    .reduce((acc, val) => {
+                        let acpts = autocompletePoints.find(
+                            (x) => x.character == val
+                        )?.points;
+                        if (acpts) {
+                            acc *= 5;
+                            return acc + acpts;
+                        } else {
+                            return acc;
+                        }
+                    }, 0),
+            ];
+        } else {
+            return acc;
+        }
+    }, [] as number[]);
+
+    acscores.sort((a, b) => a - b);
+
+    console.log(acscores[Math.round((acscores.length - 1) / 2)]);
 };
 
 export { run10 };
